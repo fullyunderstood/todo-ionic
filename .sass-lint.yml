@@ -20,7 +20,7 @@ rules:
   no-attribute-selectors: 0
   no-color-hex: 0
   no-color-keywords: 2
-  no-color-literals: 2
+  no-color-literals: 0
   no-combinators: 0
   no-css-comments: 2
   no-debug: 2
@@ -77,7 +77,7 @@ rules:
   nesting-depth: 2
   property-sort-order: 0
   pseudo-element: 2
-  quotes: 2
+  quotes: 0
   shorthand-values: 2
   url-quotes: 2
   variable-for-property: 2
