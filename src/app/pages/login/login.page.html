@@ -6,6 +6,9 @@
 
 <ion-content class="ion-padding">
 
-  <ion-button expand='block' color='primary' (click)="loginAction()">Login</ion-button>
+  <firebase-ui
+    (signInSuccessWithAuthResult)="successCallback($event)"
+    (signInFailure)="errorCallback($event)"
+  ></firebase-ui>
 
 </ion-content>
