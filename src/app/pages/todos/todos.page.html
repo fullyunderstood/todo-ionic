@@ -6,4 +6,9 @@
 
 <ion-content>
 
+  <br>
+  <p *ngIf="afAuth?.auth?.currentUser">
+    Welcome, {{ afAuth.auth.currentUser.displayName }} 🙋‍♂️
+  </p>
+
 </ion-content>

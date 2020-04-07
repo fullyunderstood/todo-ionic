@@ -8,12 +8,16 @@ import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
 
+import { FirebaseUIModule } from 'firebaseui-angular';
+import { firebaseUiAuthConfig } from 'src/app/shared/config/config';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LoginPageRoutingModule
+    LoginPageRoutingModule,
+    FirebaseUIModule.forFeature(firebaseUiAuthConfig)
   ],
   declarations: [LoginPage]
 })
