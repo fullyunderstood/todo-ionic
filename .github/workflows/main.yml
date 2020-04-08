@@ -10,43 +10,34 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  Linting_checks:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
 
-      # Installs node modules
-      - name: Install node modules
+      # Installs Dependencies
+      - name: Install dependencies
         run: npm install
 
       # Checks for linting errors
       - name: Check for linting errors
         run: npm run lint:all
-
+  
       # Production build
       - name: Build the project for production
         run: npm run build:prod -- --progress=false
+        if: github.ref == 'master'
 
       # Create the artifacts
-      - name: Archive production artifacts
+      - name: Upload artifact
         uses: actions/upload-artifact@v1
+        if: github.ref == 'master'
         with:
+          # Artifact name
           name: dist
-          path: dist
-
-      # - name: Set up JDK 1.8
-      #   uses: actions/setup-java@v1
-      #   with:
-      #     java-version: 1.8
-      # - name: Build debug APK
-      #   run: bash ./gradlew assembleDebug --stacktrace
-      # - name: Upload APK
-      #   uses: actions/upload-artifact@v1
-      #   with:
-      #     name: todo-app
-      #     path: app/build/outputs/apk/debug/todo-app-debug.apk
+          # Directory containing files to upload
+          path: dist/todo-ionic
