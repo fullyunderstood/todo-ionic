@@ -10,7 +10,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  Linting_checks:
+  Build with liniting checks:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -38,6 +38,6 @@ jobs:
         if: github.ref == 'refs/heads/master'
         with:
           # Artifact name
-          name: dist
+          name: www
           # Directory containing files to upload
-          path: dist/todo-ionic
+          path: www
