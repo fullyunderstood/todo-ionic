@@ -29,3 +29,4 @@ export const FORGOT_PASSWORD = {
         email: 'Email is invalid'
     }
 };
+
