@@ -126,4 +126,9 @@ export class LoginPage implements OnInit {
     this.resetForm();
     this.router.navigate(['signup']);
   }
+
+  goToForgotPassword() {
+    this.resetForm();
+    this.router.navigate(['/forgot-password']);
+  }
 }

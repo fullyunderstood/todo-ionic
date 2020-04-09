@@ -22,3 +22,10 @@ export const SIGNUP = {
         minlength: 'Password must be atleast 5 characters long'
     }
 };
+
+export const FORGOT_PASSWORD = {
+    email: {
+        required: 'Email is required',
+        email: 'Email is invalid'
+    }
+};
