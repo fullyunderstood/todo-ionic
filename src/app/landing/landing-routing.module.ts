@@ -1,21 +1,34 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LandingPage } from './landing.page';
+import { LandingGuard } from '../shared/guards/landing.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: LandingPage,
+    canActivate: [LandingGuard],
     children: [
-      {
-        path: '',
-        loadChildren: () => import('../pages/login/login.module').then(m => m.LoginPageModule)
-
+      // {
+      //   path: '',
       //   loadChildren: () => import('../pages/welcome/welcome.module').then(m => m.WelcomePageModule)
       // },
-      // {
-      //   path: 'signin',
-      //   loadChildren: () => import('../pages/login/login.module').then(m => m.LoginPageModule)
+      {
+        path: 'login',
+        loadChildren: () => import('../pages/login/login.module').then(m => m.LoginPageModule)
+      },
+      {
+        path: 'signup',
+        loadChildren: () => import('../pages/signup/signup.module').then(m => m.SignupPageModule)
+      },
+      {
+        path: 'forgot-password',
+        loadChildren: () => import('../pages/forgot-password/forgot-password.module').then(m => m.ForgotPasswordPageModule)
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'login'
       }
     ]
   }
