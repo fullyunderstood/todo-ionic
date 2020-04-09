@@ -30,7 +30,6 @@ export class AuthService {
   async loginWithEmailAndPassword(email: string, password: string) {
     try {
       const result = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-      await this.afAuth.auth.currentUser.sendEmailVerification();
       return result;
     } catch (error) {
       throw new Error(error);
