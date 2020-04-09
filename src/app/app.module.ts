@@ -14,8 +14,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 
-import { FirebaseUIModule } from 'firebaseui-angular';
-import { firebaseUiAuthConfig } from './shared/config/config';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,10 +25,10 @@ import { firebaseUiAuthConfig } from './shared/config/config';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule,
-    FirebaseUIModule.forRoot(firebaseUiAuthConfig)
+    AngularFirestoreModule
   ],
   providers: [
+    GooglePlus,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

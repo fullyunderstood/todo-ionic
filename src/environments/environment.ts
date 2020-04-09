@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyBZXIsRUNGQZ7XbzHDT7kJjouaiUryFxqg',
-    authDomain: 'todo-ionic-91b73.firebaseapp.com',
-    databaseURL: 'https://todo-ionic-91b73.firebaseio.com',
-    projectId: 'todo-ionic-91b73',
-    storageBucket: 'todo-ionic-91b73.appspot.com',
-    messagingSenderId: '499299743485',
-    appId: '1:499299743485:web:53a89d25405b32e571f094',
-    measurementId: 'G-NHLT7ZTGT6'
+    apiKey: 'AIzaSyARboHRfxuh-y3LG0WZCBDH76pjQVkhFoM',
+    authDomain: 'todo-ionic-273619.firebaseapp.com',
+    databaseURL: 'https://todo-ionic-273619.firebaseio.com',
+    projectId: 'todo-ionic-273619',
+    storageBucket: 'todo-ionic-273619.appspot.com',
+    messagingSenderId: '436502872708',
+    appId: '1:436502872708:web:5ba3fb52c000e16d2178d1',
+    measurementId: 'G-Z10X4M82Z6'
   }
 };
 

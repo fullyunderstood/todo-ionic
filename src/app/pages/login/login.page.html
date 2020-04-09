@@ -1,14 +1,64 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
+  <ion-toolbar color="light">
+    <ion-title>Todo manager</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-
-  <firebase-ui
-    (signInSuccessWithAuthResult)="successCallback($event)"
-    (signInFailure)="errorCallback($event)"
-  ></firebase-ui>
-
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="6">
+        <ion-card>
+          <ion-card-header class="ion-text-center">
+            <ion-card-title>Log in</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <form [formGroup]="loginForm" autocomplete="off">
+              <ion-item>
+                <ion-label position="floating">Email</ion-label>
+                <ion-input type="text" [formControl]="email"></ion-input>
+              </ion-item>
+              <ion-label color="danger">{{ formError?.email }}</ion-label>
+              <ion-item>
+                <ion-label position="floating">Password</ion-label>
+                <ion-input type="password" [formControl]="password"></ion-input>
+              </ion-item>
+              <ion-label color="danger">{{ formError?.password }}</ion-label>
+              <ion-button color="success" expand="block" class="ion-margin-top" [disabled]="loginForm.invalid" (click)="login()">
+                <ion-spinner *ngIf="loginInProgress" name="lines-small"></ion-spinner>
+                Login
+              </ion-button>
+              <ion-button color="light" expand="block" class="ion-margin-top" (click)="goToSignUpPage()">
+                New User? Create account
+              </ion-button>
+            </form>
+            <!-- <ion-item lines="none" class="ion-text-center">
+              <ion-label>Or with,</ion-label>
+            </ion-item>
+            <ion-item lines=none class="ion-text-center">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="4">
+                    <ion-fab-button size="small" color="dark" (click)="googleLogin()">
+                      <ion-icon name="logo-google"></ion-icon>
+                    </ion-fab-button>
+                  </ion-col>
+                  <ion-col size="4">
+                    <ion-fab-button size="small" color="dark">
+                      <ion-icon name="logo-facebook"></ion-icon>
+                    </ion-fab-button>
+                  </ion-col>
+                  <ion-col size="4">
+                    <ion-fab-button size="small" color="dark">
+                      <ion-icon name="logo-github"></ion-icon>
+                    </ion-fab-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item> -->
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
