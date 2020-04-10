@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/main/todos"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Create a todo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="6">
+        <ion-card>
+          <ion-card-content>
+            <form [formGroup]="createTodoForm" autocomplete="off">
+              <ion-item>
+                <ion-label position="floating" class="required-field">Name</ion-label>
+                <ion-input type="text" [formControl]="name" ></ion-input>
+              </ion-item>
+              <!-- <ion-label color="danger">{{ formError?.email }}</ion-label> -->
+              <ion-item>
+                <ion-label position="floating">Description</ion-label>
+                <ion-textarea rows="2" autoGrow="true" spellcheck="true" [formControl]="description"></ion-textarea>
+              </ion-item>
+              <ion-item>
+                <ion-label>Due Date</ion-label>
+                <ion-datetime placeholder="Select Date" [formControl]="dueDate"></ion-datetime>
+              </ion-item>
+              <!-- <ion-label color="danger">{{ formError?.password }}</ion-label> -->
+              <ion-button color="success" expand="block" class="ion-margin-top" (click)="createTodo()">
+                <ion-spinner *ngIf="todoCreationInProgress" name="lines-small"></ion-spinner>
+                Create
+              </ion-button>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+
