@@ -10,9 +10,9 @@ export const LOGIN = {
 };
 
 export const SIGNUP = {
-    // name: {
-    //     required: 'Name is required'
-    // },
+    name: {
+        required: 'Name is required'
+    },
     email: {
         required: 'Email is required',
         email: 'Email is invalid'

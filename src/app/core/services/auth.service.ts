@@ -17,9 +17,12 @@ export class AuthService {
     private utilService: UtilService
   ) { }
 
-  async registerWithEmailAndPassword(email: string, password: string) {
+  async registerUser(name: string, email: string, password: string) {
     try {
       const result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+      await this.afAuth.auth.currentUser.updateProfile({
+        displayName: name
+      });
       await this.afAuth.auth.currentUser.sendEmailVerification();
       return result;
     } catch (error) {

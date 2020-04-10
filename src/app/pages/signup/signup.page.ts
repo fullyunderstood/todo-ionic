@@ -14,12 +14,12 @@ import { Router } from '@angular/router';
 export class SignupPage implements OnInit {
 
   signupForm: FormGroup;
-  // name: FormControl;
+  name: FormControl;
   email: FormControl;
   password: FormControl;
 
   formError: any = {
-    // name: '',
+    name: '',
     email: '',
     password: ''
   };
@@ -41,9 +41,9 @@ export class SignupPage implements OnInit {
   }
 
   createFormControl() {
-    // this.name = new FormControl('', [
-    //   Validators.required
-    // ]);
+    this.name = new FormControl('', [
+      Validators.required
+    ]);
 
     this.email = new FormControl('', [
       Validators.required,
@@ -58,7 +58,7 @@ export class SignupPage implements OnInit {
 
   createForm() {
     this.signupForm = new FormGroup({
-      // name: this.name,
+      name: this.name,
       email: this.email,
       password: this.password
     });
@@ -81,7 +81,7 @@ export class SignupPage implements OnInit {
   async signup() {
     try {
       this.signupInProgress = true;
-      const result = await this.firebaseAuthService.registerWithEmailAndPassword(this.email.value, this.password.value);
+      const result = await this.firebaseAuthService.registerUser(this.name.value, this.email.value, this.password.value);
       this.utilService.presentToast('Account created 🎉', 'Verification email sent! Please verify.', 4000, 'success');
       this.signupInProgress = false;
       this.resetForm();
