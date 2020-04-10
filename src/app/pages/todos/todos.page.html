@@ -1,19 +1,39 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>todos</ion-title>
+    <ion-title>Todos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
-  <br>
-  <p *ngIf="afAuth?.auth?.currentUser">
-    Welcome, {{ afAuth.auth.currentUser.email }} 🙋‍♂️
-  </p>
+  <ion-list>
+    <ion-item-sliding *ngFor="let todo of todos$ | async">  
+      <ion-item-options side="start">
+        <ion-item-option>
+          <ion-icon slot="icon-only" name="checkmark-done-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+ 
+      <ion-item>
+        <ion-label>
+          <h2>{{ todo?.name}}</h2>
+          <p>{{todo?.description}}</p>
+        </ion-label>
+        <ion-note slot="end">
+          {{ todo?.date | todoItemDate}}
+        </ion-note>
+      </ion-item>
+      
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="deleteTodo(todo.id)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>  
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button size="small">
-      <ion-icon name="add"(click)=addTodo()></ion-icon>
+      <ion-icon name="add" (click)=addTodo()></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>

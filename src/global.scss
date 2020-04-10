@@ -26,6 +26,6 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 .required-field::after {
-    content: ' *';
-    color: var(--ion-color-danger);
+  content: ' *';
+  color: var(--ion-color-danger);
 }

@@ -83,4 +83,8 @@ export class AuthService {
   getAuthState() {
     return this.afAuth.authState;
   }
+
+  getCurrentUser() {
+    return this.afAuth.auth.currentUser;
+  }
 }
