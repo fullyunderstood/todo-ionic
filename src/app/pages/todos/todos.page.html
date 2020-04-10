@@ -11,4 +11,9 @@
     Welcome, {{ afAuth.auth.currentUser.email }} 🙋‍♂️
   </p>
 
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button size="small">
+      <ion-icon name="add"(click)=addTodo()></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

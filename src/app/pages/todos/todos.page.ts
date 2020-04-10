@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 
@@ -9,10 +10,15 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class TodosPage implements OnInit {
 
   constructor(
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    private router: Router
   ) { }
 
   ngOnInit() {
   }
 
+  addTodo() {
+    console.log("Hi, Add your todo here!");
+    this.router.navigate(['/main/create-todo']);
+  }
 }
