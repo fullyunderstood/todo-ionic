@@ -75,7 +75,7 @@ export class LoginPage implements OnInit {
     try {
       this.loginInProgress = true;
       const result = await this.firebaseAuthService.loginWithEmailAndPassword(this.email.value, this.password.value);
-      this.utilService.presentToast('Successfully logged in 😊', `Welcome back, ${result.user.email}!`, 2000, 'success');
+      this.utilService.presentToast('Successfully logged in 😊', `Welcome back, ${result.user.displayName}!`, 2000, 'success');
       this.onSuccessfulLogin();
       this.loginInProgress = false;
     } catch (error) {
@@ -85,7 +85,6 @@ export class LoginPage implements OnInit {
   }
 
   onSuccessfulLogin() {
-    this.utilService.presentToast('Successfully logged in 😊', `let's do to do!`, 2000, 'success');
     this.resetForm();
     this.router.navigate(['/main/todos']);
   }
