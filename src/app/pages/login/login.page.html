@@ -15,12 +15,12 @@
           <ion-card-content>
             <form [formGroup]="loginForm" autocomplete="off">
               <ion-item>
-                <ion-label position="floating">Email</ion-label>
+                <ion-label position="floating" class="required-field">Email</ion-label>
                 <ion-input type="text" [formControl]="email"></ion-input>
               </ion-item>
               <ion-label color="danger">{{ formError?.email }}</ion-label>
               <ion-item>
-                <ion-label position="floating">Password</ion-label>
+                <ion-label position="floating" class="required-field">Password</ion-label>
                 <ion-input type="password" [formControl]="password"></ion-input>
               </ion-item>
               <ion-label color="danger">{{ formError?.password }}</ion-label>
