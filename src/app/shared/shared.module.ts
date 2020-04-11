@@ -1,16 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TodoItemDatePipe } from './pipes/todo-item-date.pipe';
 
 
 
 @NgModule({
-  declarations: [TodoItemDatePipe],
+  declarations: [],
   imports: [
     CommonModule
   ],
-  exports: [
-    TodoItemDatePipe
-  ]
+  exports: []
 })
 export class SharedModule { }

@@ -7,15 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { TodosPageRoutingModule } from './todos-routing.module';
 
 import { TodosPage } from './todos.page';
-import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TodosPageRoutingModule,
-    SharedModule
+    TodosPageRoutingModule
   ],
   declarations: [TodosPage]
 })

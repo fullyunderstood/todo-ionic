@@ -1,9 +1,81 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="resetStates()" defaultHref="/main/todos"></ion-back-button>
+    </ion-buttons>
     <ion-title>todo</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="6">
+        <ion-card *ngIf="inEditMode">
+          <ion-card-content>
+            <form [formGroup]="editTodoForm" autocomplete="off">
+              <ion-item>
+                <ion-label position="floating" class="required-field">Name</ion-label>
+                <ion-input type="text" [formControl]="name"></ion-input>
+              </ion-item>
+              <ion-label color="danger">{{ formError?.name }}</ion-label>
+              <ion-item>
+                <ion-label position="floating">Description</ion-label>
+                <ion-textarea rows="2" autoGrow="true" spellcheck="true" [formControl]="description"></ion-textarea>
+              </ion-item>
+              <ion-item>
+                <ion-label>Due Date</ion-label>
+                <ion-datetime placeholder="Select Date" [formControl]="dueDate"></ion-datetime>
+              </ion-item>
+              <ion-row>
+                <ion-col size="6">
+                  <ion-button color="light" expand="block" class="ion-margin-top" (click)="cancelEdit()">
+                    Cancel
+                  </ion-button>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-button color="success" expand="block" class="ion-margin-top" [disabled]="editTodoForm.invalid" (click)="saveTodo()">
+                    <ion-spinner *ngIf="todoSaveInProgress" name="lines-small"></ion-spinner>
+                    Save
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </form>
+          </ion-card-content>
+        </ion-card>
+        <ion-card *ngIf="!inEditMode">
+          <ion-card-content>
+            <ion-list>
+              <ion-text>
+                <p class="todo-info-heading">Name</p>
+              </ion-text>
+              <ion-text>
+                <p class="todo-info-content">{{ todoInfo?.name }}</p>
+              </ion-text>
 
+              <ion-text>
+                <p class="todo-info-heading">Description</p>
+              </ion-text>
+              <ion-text>
+                <p class="todo-info-content">{{ todoInfo?.description }}</p>
+              </ion-text>
+
+              <ion-text>
+                <p class="todo-info-heading">Due Date</p>
+              </ion-text>
+              <ion-text>
+                <p class="todo-info-content">{{ todoInfo?.date | date }}</p>
+              </ion-text>
+            </ion-list>
+            <ion-button color="success" expand="block" class="ion-margin-top" (click)="goToEditMode()">
+              Edit todo 👆
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+
+

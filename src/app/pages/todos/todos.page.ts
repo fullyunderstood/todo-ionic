@@ -39,4 +39,8 @@ export class TodosPage implements OnInit {
       this.utilService.presentToast('Oops', error.message, 1000, 'success');
     }
   }
+
+  openTodo(todoId: string, todoInformation: any) {
+    this.router.navigate(['/main/todo', todoId], { state: { todoInfo: todoInformation }});
+  }
 }
