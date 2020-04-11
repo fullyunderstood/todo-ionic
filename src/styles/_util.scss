@@ -1,0 +1,6 @@
+.required-field {
+  &::after {
+    content: " *";
+    color: var(--ion-color-danger);
+  }
+}

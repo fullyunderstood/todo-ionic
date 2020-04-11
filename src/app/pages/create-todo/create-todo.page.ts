@@ -76,6 +76,7 @@ export class CreateTodoPage implements OnInit {
         name: this.name.value,
         description: this.description.value,
         date: this.dueDate.value,
+        completed: false,
         createdAt: new Date()
       });
       this.resetForm();

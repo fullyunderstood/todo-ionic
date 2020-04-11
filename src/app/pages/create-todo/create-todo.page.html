@@ -25,7 +25,7 @@
               </ion-item>
               <ion-item>
                 <ion-label>Due Date</ion-label>
-                <ion-datetime placeholder="Select Date" [formControl]="dueDate"></ion-datetime>
+                <ion-datetime placeholder="Select Date" [formControl]="dueDate" min="2020-01-01" max="2099-12-31"></ion-datetime>
               </ion-item>
               <ion-button color="success" expand="block" class="ion-margin-top" [disabled]="createTodoForm.invalid" (click)="createTodo()">
                 <ion-spinner *ngIf="todoCreationInProgress" name="lines-small"></ion-spinner>

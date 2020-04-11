@@ -42,4 +42,20 @@ export class UtilService {
   isNativePlatform() {
     return this.platform.is('hybrid');
   }
+
+  getTodaysDate(): string {
+    return (new Date()).toISOString();
+  }
+
+  getTomorrowsDate(): string {
+    const tomorrowsDate = new Date();
+    tomorrowsDate.setDate(tomorrowsDate.getDate() + 1);
+    return tomorrowsDate.toISOString();
+  }
+
+  getYesterdaysDate(): string {
+    const yesterdaysDate = new Date();
+    yesterdaysDate.setDate(yesterdaysDate.getDate() - 1);
+    return yesterdaysDate.toISOString();
+  }
 }

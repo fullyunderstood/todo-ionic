@@ -19,7 +19,11 @@
           <p>{{todo?.description}}</p>
         </ion-label>
         <ion-note slot="end">
-          {{ todo?.date | date:'MMM dd' }}
+          <app-date-modify
+          [date]="todo?.date"
+          purpose="todo-item-note"
+          [complete]="todo?.completed">
+        </app-date-modify>
         </ion-note>
       </ion-item>
 
