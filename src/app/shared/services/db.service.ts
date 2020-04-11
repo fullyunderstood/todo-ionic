@@ -25,9 +25,13 @@ export class DbService {
     }
   }
 
-  getTodos() {
+  getActiveTodos() {
     return this.afDb
-      .collection(`/users/${this.firebaseAuthService.getCurrentUser().uid}/todos`, ref => ref.orderBy('createdAt', 'asc'))
+      .collection(
+        `/users/${this.firebaseAuthService.getCurrentUser().uid}/todos`,
+        ref => ref.where('completed', '==', false)
+                    .orderBy('createdAt', 'desc')
+      )
       .snapshotChanges()
       .pipe(
         map(todos => {
@@ -41,6 +45,28 @@ export class DbService {
         })
       );
   }
+
+  getCompletedTodos() {
+    return this.afDb
+      .collection(
+        `/users/${this.firebaseAuthService.getCurrentUser().uid}/todos`,
+        ref => ref.where('completed', '==', true)
+                    .orderBy('createdAt', 'desc')
+      )
+      .snapshotChanges()
+      .pipe(
+        map(todos => {
+          return todos.map(todo => {
+            const id = todo.payload.doc.id;
+            return {
+              id,
+              ...(todo.payload.doc.data() as any)
+            };
+          });
+        })
+      );
+  }
+
 
   getTodo(todoId: string) {
     return this.afDb.doc(`/users/${this.firebaseAuthService.getCurrentUser().uid}/todos/${todoId}`)
@@ -69,6 +95,42 @@ export class DbService {
     try {
       await this.afDb.doc(`/users/${this.firebaseAuthService.getCurrentUser().uid}/todos/${todoId}`)
               .delete();
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  async deleteAllCompletedTodos() {
+    try {
+      const completedTodos = await this.afDb.collection(
+        `/users/${this.firebaseAuthService.getCurrentUser().uid}/todos`,
+        ref => ref.where('completed', '==', true)
+                    .orderBy('createdAt', 'desc')
+      ).get().toPromise();
+
+      if (completedTodos && completedTodos.size) {
+        completedTodos.docs.forEach(async doc => {
+          await doc.ref.delete();
+        });
+      }
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  async completeTodo(todoId: string) {
+    try {
+      await this.afDb.doc(`/users/${this.firebaseAuthService.getCurrentUser().uid}/todos/${todoId}`)
+              .update({completed: true});
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  async restoreTodo(todoId: string) {
+    try {
+      await this.afDb.doc(`/users/${this.firebaseAuthService.getCurrentUser().uid}/todos/${todoId}`)
+              .update({completed: false});
     } catch (error) {
       throw new Error(error);
     }

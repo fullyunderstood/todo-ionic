@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ToastController, Platform, LoadingController } from '@ionic/angular';
+import { ToastController, Platform, LoadingController, AlertController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,8 @@ export class UtilService {
   constructor(
     private platform: Platform,
     private toastController: ToastController,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private alertController: AlertController
   ) { }
 
   async presentToast(header: string, message: string, durationInMilliseconds?: number, status?: string) {
@@ -39,6 +40,31 @@ export class UtilService {
     }
   }
 
+  async presentAlertDelete(
+    header: string,
+    message: string,
+    cancelButtonName: string,
+    confirmButtonName: string,
+    context: object,
+    confirmAction: () => {}
+  ) {
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons: [
+        {
+          text: cancelButtonName,
+          role: 'cancel'
+        }, {
+          text: confirmButtonName,
+          handler: confirmAction.bind(context)
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
   isNativePlatform() {
     return this.platform.is('hybrid');
   }
@@ -51,11 +77,5 @@ export class UtilService {
     const tomorrowsDate = new Date();
     tomorrowsDate.setDate(tomorrowsDate.getDate() + 1);
     return tomorrowsDate.toISOString();
-  }
-
-  getYesterdaysDate(): string {
-    const yesterdaysDate = new Date();
-    yesterdaysDate.setDate(yesterdaysDate.getDate() - 1);
-    return yesterdaysDate.toISOString();
   }
 }

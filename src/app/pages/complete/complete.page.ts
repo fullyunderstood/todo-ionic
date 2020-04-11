@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoService } from 'src/app/shared/services/todo.service';
+import { Observable } from 'rxjs';
+import { DbService } from 'src/app/shared/services/db.service';
 
 @Component({
   selector: 'app-complete',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompletePage implements OnInit {
 
-  constructor() { }
+  completedTodos$: Observable<any>;
+
+  constructor(
+    private firebaseDbService: DbService,
+    public todoService: TodoService
+  ) { }
 
   ngOnInit() {
+    this.completedTodos$ = this.firebaseDbService.getCompletedTodos();
   }
 
 }
