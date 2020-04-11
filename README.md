@@ -2,4 +2,3 @@
 
 # todo-ionic
 ## Made with ❤ in india.
-## Vishal is working on this branch

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/main/todos"></ion-back-button>
+      <ion-back-button (click)="resetStates()" defaultHref="/main/todos"></ion-back-button>
     </ion-buttons>
     <ion-title>Create a todo</ion-title>
   </ion-toolbar>
@@ -16,9 +16,9 @@
             <form [formGroup]="createTodoForm" autocomplete="off">
               <ion-item>
                 <ion-label position="floating" class="required-field">Name</ion-label>
-                <ion-input type="text" [formControl]="name" ></ion-input>
+                <ion-input type="text" [formControl]="name"></ion-input>
               </ion-item>
-              <!-- <ion-label color="danger">{{ formError?.email }}</ion-label> -->
+              <ion-label color="danger">{{ formError?.name }}</ion-label>
               <ion-item>
                 <ion-label position="floating">Description</ion-label>
                 <ion-textarea rows="2" autoGrow="true" spellcheck="true" [formControl]="description"></ion-textarea>
@@ -27,8 +27,7 @@
                 <ion-label>Due Date</ion-label>
                 <ion-datetime placeholder="Select Date" [formControl]="dueDate"></ion-datetime>
               </ion-item>
-              <!-- <ion-label color="danger">{{ formError?.password }}</ion-label> -->
-              <ion-button color="success" expand="block" class="ion-margin-top" (click)="createTodo()">
+              <ion-button color="success" expand="block" class="ion-margin-top" [disabled]="createTodoForm.invalid" (click)="createTodo()">
                 <ion-spinner *ngIf="todoCreationInProgress" name="lines-small"></ion-spinner>
                 Create
               </ion-button>

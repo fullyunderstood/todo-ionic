@@ -11,7 +11,7 @@ const routes: Routes = [
     canActivate: [MainGuard],
     children: [
       {
-        path: 'todo',
+        path: 'todo/:id',
         pathMatch: 'full',
         loadChildren: () => import('../pages/todo/todo.module').then(m => m.TodoPageModule)
       },

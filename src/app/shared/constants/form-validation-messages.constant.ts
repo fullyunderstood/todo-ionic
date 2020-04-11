@@ -30,3 +30,8 @@ export const FORGOT_PASSWORD = {
     }
 };
 
+export const CREATE_TODO = {
+    name: {
+        required: 'Name is required'
+    }
+};
