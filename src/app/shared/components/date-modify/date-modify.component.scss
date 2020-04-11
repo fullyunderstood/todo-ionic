@@ -1,5 +1,11 @@
 @import 'src/styles/colors';
 
+p {
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+}
+
 .todo-overdue {
   color: $overdue-todo;
 }

@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { CompletePageRoutingModule } from './complete-routing.module';
 
 import { CompletePage } from './complete.page';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CompletePageRoutingModule
+    CompletePageRoutingModule,
+    SharedModule
   ],
   declarations: [CompletePage]
 })

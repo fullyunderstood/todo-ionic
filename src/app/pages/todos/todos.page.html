@@ -6,9 +6,9 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let todo of todos$ | async">
+    <ion-item-sliding *ngFor="let todo of activeTodos$ | async">
       <ion-item-options side="start">
-        <ion-item-option>
+        <ion-item-option (click)="todoService.completeTodo(todo.id)">
           <ion-icon slot="icon-only" name="checkmark-done-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>
@@ -22,13 +22,13 @@
           <app-date-modify
           [date]="todo?.date"
           purpose="todo-item-note"
-          [complete]="todo?.completed">
+          [complete]="false">
         </app-date-modify>
         </ion-note>
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option color="danger" (click)="deleteTodo(todo.id)">
+        <ion-item-option color="danger" (click)="todoService.deleteTodo(todo.id)">
           <ion-icon slot="icon-only" name="trash"></ion-icon>
         </ion-item-option>
       </ion-item-options>
@@ -37,7 +37,7 @@
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button size="small">
-      <ion-icon name="add" (click)=addTodo()></ion-icon>
+      <ion-icon name="add" (click)=createTodo()></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>

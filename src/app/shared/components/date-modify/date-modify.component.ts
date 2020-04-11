@@ -32,6 +32,9 @@ export class DateModifyComponent implements OnInit {
   }
 
   getDateText(): string {
+    if (!this.date) {
+      return '';
+    }
     const transformedDate = this.datePipe.transform(this.date, 'MM/dd/yyyy');
     const transformedTodaysDate = this.datePipe.transform(this.todaysDate, 'MM/dd/yyyy');
     const transformedTomorrowsDate = this.datePipe.transform(this.tomorrowsDate, 'MM/dd/yyyy');
