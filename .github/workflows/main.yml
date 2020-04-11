@@ -29,7 +29,7 @@ jobs:
 
       # Production build
       - name: Build the project for production
-        run: npm run build:prod -- --progress=false
+        run: ionic build --prod
         if: github.ref == 'refs/heads/master'
 
       # Create the artifacts
