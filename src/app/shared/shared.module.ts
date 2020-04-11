@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-
+import { CommonModule, DatePipe } from '@angular/common';
+import { DateModifyComponent } from './components/date-modify/date-modify.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    DateModifyComponent
+  ],
   imports: [
     CommonModule
   ],
-  exports: []
+  exports: [
+    DateModifyComponent
+  ],
+  providers: [
+    DatePipe
+  ]
 })
 export class SharedModule { }

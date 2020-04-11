@@ -1,0 +1,9 @@
+@import 'src/styles/colors';
+
+.todo-overdue {
+  color: $overdue-todo;
+}
+
+.todo-complete {
+  color: $complete-todo;
+}

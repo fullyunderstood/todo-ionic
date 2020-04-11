@@ -1,0 +1,10 @@
+<ng-container *ngIf="!isCalculating">
+  <ng-container [ngSwitch]="purpose">
+    <ng-container *ngSwitchCase="'todo-item-note'">
+      <p [ngClass]="{ 'todo-overdue': isOverdue && !complete, 'todo-complete': complete }">
+        {{ complete ? 'Done' : displayDate }}
+      </p>
+    </ng-container>
+  </ng-container>
+</ng-container>
+<p *ngIf="isCalculating">-</p>

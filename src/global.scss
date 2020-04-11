@@ -25,9 +25,8 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-.required-field {
-  &::after {
-    content: ' *';
-    color: var(--ion-color-danger);
-  }
-}
+/* Custom colors used */
+@import "./styles/colors";
+
+/* Custom utility classes */
+@import "./styles/util";
