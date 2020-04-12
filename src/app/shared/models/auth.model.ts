@@ -24,3 +24,13 @@ export class LoginData {
         this.password = password;
     }
 }
+
+export class UserData {
+    displayName: string;
+    email: string;
+
+    constructor(displayName: string, email: string) {
+        this.displayName = displayName;
+        this.email = email;
+    }
+}
