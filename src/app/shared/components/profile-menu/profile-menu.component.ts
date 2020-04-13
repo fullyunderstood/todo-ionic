@@ -37,6 +37,11 @@ export class ProfileMenuComponent implements OnInit {
     }
   }
 
+  openSettings() {
+    this.router.navigate(['/main/settings']);
+    this.closePopover();
+  }
+
   closePopover() {
     this.param.get('reference').dismissPopover();
   }
