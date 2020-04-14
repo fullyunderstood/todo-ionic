@@ -7,7 +7,7 @@
   </ion-list-header>
   <ion-item>
     <ion-label>Dark mode</ion-label>
-    <ion-toggle (ionChange)="changeTheme($event)" slot="end"></ion-toggle>
+    <ion-toggle [(ngModel)]="themeState" (ionChange)="changeTheme($event)" slot="end"></ion-toggle>
   </ion-item>
   <ion-item (click)="openSettings()">
     <ion-label>Settings</ion-label>
