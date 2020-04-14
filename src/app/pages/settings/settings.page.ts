@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UtilService } from 'src/app/shared/services/util.service';
 import { TodoService } from 'src/app/shared/services/todo.service';
+import { UserData } from 'src/app/shared/models/auth.model';
 
 @Component({
   selector: 'app-settings',
@@ -11,8 +12,7 @@ import { TodoService } from 'src/app/shared/services/todo.service';
 })
 export class SettingsPage implements OnInit {
 
-  username: string;
-  email: string;
+  currentUser: UserData;
 
   constructor(
     private router: Router,
@@ -22,8 +22,11 @@ export class SettingsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.username = this.firebaseAuthService.getCurrentUser().displayName || '-';
-    this.email = this.firebaseAuthService.getCurrentUser().email;
+    const { displayName, email } = this.firebaseAuthService.getCurrentUser();
+    this.currentUser = {
+      displayName: displayName || '-',
+      email
+    };
   }
 
   async logoutAction() {

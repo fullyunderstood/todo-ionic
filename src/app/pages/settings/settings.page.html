@@ -9,11 +9,11 @@
     <ion-item>
       <ion-row class="user-details">
         <ion-col size="3">
-          <ngx-avatar [name]="username" size="40" round="true"></ngx-avatar>
+          <ngx-avatar [name]="currentUser.displayName" size="40" round="true"></ngx-avatar>
         </ion-col>
         <ion-col size="9">
-          <ion-row class="ion-text-nowrap">Username: {{ username }}</ion-row>
-          <ion-row class="ion-text-nowrap">Email: {{ email }}</ion-row>
+          <ion-row class="ion-text-nowrap">Username: {{ currentUser.displayName }}</ion-row>
+          <ion-row class="ion-text-nowrap">Email: {{ currentUser.email }}</ion-row>
         </ion-col>
       </ion-row>
     </ion-item>
