@@ -15,7 +15,7 @@
         <ion-col size="10">
           <ion-row>
             <ion-col size="9">
-              <ion-label *ngIf="!editClicked; else canEdit">Username: {{ currentUser.displayName }}</ion-label>
+              <ion-label *ngIf="!editClicked; else canEdit" class="ion-text-nowrap">Username: {{ currentUser.displayName }}</ion-label>
               <ng-template #canEdit>
                 <ion-input type="text" [(ngModel)]="editUsernameText" placeholder="Change Username"></ion-input>
               </ng-template>
