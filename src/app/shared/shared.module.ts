@@ -7,6 +7,7 @@ import { ProfileMenuComponent } from './components/profile-menu/profile-menu.com
 // Import your AvatarModule
 import { AvatarModule } from 'ngx-avatar';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     IonicModule,
     AvatarModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   exports: [
     DateModifyComponent,

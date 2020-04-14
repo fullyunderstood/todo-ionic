@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UtilService } from '../../services/util.service';
 import { NavParams } from '@ionic/angular';
+import { AppThemeService } from '../../services/app-theme.service';
 
 @Component({
   selector: 'app-profile-menu',
@@ -14,16 +15,20 @@ export class ProfileMenuComponent implements OnInit {
   @Input() name: string;
   @Input() email: string;
 
+  themeState = false;
+
   constructor(
     private router: Router,
     private firebaseAuthService: AuthService,
     private utilService: UtilService,
-    private param: NavParams
+    private param: NavParams,
+    private appThemeService: AppThemeService
   ) { }
 
   ngOnInit() {
     this.name = this.param.get('displayName');
     this.email = this.param.get('email');
+    this.appThemeService.currentState$.subscribe(val => this.themeState = val);
   }
 
   async logoutAction() {
@@ -46,7 +51,7 @@ export class ProfileMenuComponent implements OnInit {
     this.param.get('reference').dismissPopover();
   }
 
-  changeTheme(event: any) {
-    document.body.classList.toggle('dark', event.detail.checked);
+  changeTheme(event: any ) {
+    this.appThemeService.changeTheme(event.detail.checked);
   }
 }
