@@ -37,7 +37,7 @@
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button size="small" color="danger">
+    <ion-fab-button size="small" color="danger" [disabled]="(completedTodos$ | async)?.length == 0">
       <ion-icon name="trash" (click)=todoService.deleteAllCompletedTodos()></ion-icon>
     </ion-fab-button>
   </ion-fab>
