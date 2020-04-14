@@ -12,7 +12,9 @@ export class TodoService {
   constructor(
     public afAuth: AngularFireAuth,
     private firebaseDbService: DbService,
-    private utilService: UtilService) { }
+    private utilService: UtilService,
+    private router: Router
+  ) { }
 
   async deleteTodo(todoId: string) {
     try {
@@ -67,6 +69,34 @@ export class TodoService {
       await this.firebaseDbService.deleteAllCompletedTodos();
       await this.utilService.dismissLoading();
       await this.utilService.presentToast('Deleted successfully', '', 500, 'success');
+    } catch (error) {
+      await this.utilService.dismissLoading();
+      await this.utilService.presentToast('Oops', error.message, 1000, 'danger');
+    }
+  }
+
+  async deleteUserAccount() {
+    const alertData = await this.utilService
+      .presentAlertDeleteWithPassword(
+        'Delete account',
+        'Your account & related data will be deleted',
+        'Cancel',
+        'Confirm'
+    );
+    if (alertData != null) {
+      await this.deleteUserAccountActual(alertData);
+    } else {
+      await this.utilService.presentToast('Oops', 'Password entered is empty, please try again', 1000, 'danger');
+    }
+  }
+
+  async deleteUserAccountActual(password: string) {
+    try {
+      await this.utilService.presentLoading();
+      await this.firebaseDbService.deleteUserAccount(password);
+      await this.router.navigate(['/login']);
+      await this.utilService.dismissLoading();
+      await this.utilService.presentToast('Deleted account successfully', '', 500, 'success');
     } catch (error) {
       await this.utilService.dismissLoading();
       await this.utilService.presentToast('Oops', error.message, 1000, 'danger');

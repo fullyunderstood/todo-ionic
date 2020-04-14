@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UtilService } from 'src/app/shared/services/util.service';
+import { TodoService } from 'src/app/shared/services/todo.service';
 
 @Component({
   selector: 'app-settings',
@@ -11,13 +11,19 @@ import { UtilService } from 'src/app/shared/services/util.service';
 })
 export class SettingsPage implements OnInit {
 
+  username: string;
+  email: string;
+
   constructor(
     private router: Router,
     private firebaseAuthService: AuthService,
-    private utilService: UtilService
+    private utilService: UtilService,
+    public todoService: TodoService
   ) { }
 
   ngOnInit() {
+    this.username = this.firebaseAuthService.getCurrentUser().displayName || '-';
+    this.email = this.firebaseAuthService.getCurrentUser().email;
   }
 
   async logoutAction() {
@@ -28,5 +34,9 @@ export class SettingsPage implements OnInit {
     } catch (error) {
       this.utilService.presentToast('Oops 😰', error.message, 2000, 'danger');
     }
+  }
+
+  editUsername() {
+    console.log('Username');
   }
 }
