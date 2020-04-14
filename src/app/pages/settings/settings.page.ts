@@ -14,7 +14,7 @@ export class SettingsPage implements OnInit {
 
   currentUser: UserData;
   editClicked = false;
-  editUsernameText: string;
+  editUsernameText = '';
 
   constructor(
     private router: Router,

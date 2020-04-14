@@ -1,10 +1,9 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { DbService } from 'src/app/shared/services/db.service';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { TodoService } from 'src/app/shared/services/todo.service';
-import { AuthService } from 'src/app/core/services/auth.service';
 import { UserData } from 'src/app/shared/models/auth.model';
 
 @Component({
@@ -12,7 +11,7 @@ import { UserData } from 'src/app/shared/models/auth.model';
   templateUrl: './todos.page.html',
   styleUrls: ['./todos.page.scss'],
 })
-export class TodosPage implements OnInit {
+export class TodosPage implements OnInit, AfterViewInit {
 
   activeTodos$: Observable<any>;
   currentUser: UserData;
@@ -21,17 +20,17 @@ export class TodosPage implements OnInit {
     public afAuth: AngularFireAuth,
     private router: Router,
     private firebaseDbService: DbService,
-    public todoService: TodoService,
-    private firebaseAuthService: AuthService
+    public todoService: TodoService
   ) { }
 
   ngOnInit() {
     this.activeTodos$ = this.firebaseDbService.getActiveTodos();
-    const { displayName, email } = this.firebaseAuthService.getCurrentUser();
-    this.currentUser = {
-      displayName,
-      email
-    };
+  }
+
+  ngAfterViewInit() {
+    this.afAuth.user.subscribe((userData) => {
+      this.currentUser = userData;
+    });
   }
 
   createTodo() {
