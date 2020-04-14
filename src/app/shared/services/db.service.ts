@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { map, take } from 'rxjs/operators';
-import { firestore } from 'firebase';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -113,6 +113,19 @@ export class DbService {
           await doc.ref.delete();
         });
       }
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  async deleteUserAccount(password: string) {
+    try {
+      const credentials = firebase.auth.EmailAuthProvider.credential(this.firebaseAuthService.getCurrentUser().email, password);
+      await this.firebaseAuthService.getCurrentUser().reauthenticateWithCredential(credentials)
+        .then(async () => {
+          await this.firebaseAuthService.getCurrentUser().delete();
+          await this.firebaseAuthService.logout();
+        });
     } catch (error) {
       throw new Error(error);
     }

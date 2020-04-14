@@ -23,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
   exports: [
     DateModifyComponent,
     ProfileLogoButtonComponent,
-    ProfileMenuComponent
+    ProfileMenuComponent,
+    AvatarModule
   ],
   providers: [
     DatePipe

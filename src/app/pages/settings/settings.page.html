@@ -5,5 +5,26 @@
 </ion-header>
 
 <ion-content>
-  <ion-button color="primary" (click)="logoutAction()">Signout</ion-button>
+  <ion-list>
+    <ion-item>
+      <ion-row class="user-details">
+        <ion-col size="3">
+          <ngx-avatar [name]="currentUser.displayName" size="40" round="true"></ngx-avatar>
+        </ion-col>
+        <ion-col size="9">
+          <ion-row class="ion-text-nowrap">Username: {{ currentUser.displayName }}</ion-row>
+          <ion-row class="ion-text-nowrap">Email: {{ currentUser.email }}</ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-item button (click)="editUsername()">
+      <ion-label>Edit username</ion-label>
+    </ion-item>
+    <ion-item button (click)="todoService.deleteUserAccount()">
+      <ion-label color="danger">Delete account permanently</ion-label>
+    </ion-item>
+    <ion-item button (click)="logoutAction()">
+      <ion-label>Logout</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

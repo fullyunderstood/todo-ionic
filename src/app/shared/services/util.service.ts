@@ -65,6 +65,43 @@ export class UtilService {
     await alert.present();
   }
 
+  async presentAlertDeleteWithPassword(
+    header: string,
+    message: string,
+    cancelButtonName: string,
+    confirmButtonName: string
+  ) {
+    let password;
+    const alert = await this.alertController.create({
+      header,
+      message,
+      inputs: [
+        {
+          type: 'password',
+          placeholder: 'Enter passowrd',
+          name: 'password',
+        }
+      ],
+      buttons: [
+        {
+          text: cancelButtonName,
+          role: 'cancel'
+        }, {
+          text: confirmButtonName,
+          handler: data => {}
+        }
+      ]
+    });
+
+    await alert.present();
+    await alert.onDidDismiss().then((result) => {
+      if (result != null) {
+        password = result.data.values.password;
+      }
+    });
+    return password;
+  }
+
   isNativePlatform() {
     return this.platform.is('hybrid');
   }
