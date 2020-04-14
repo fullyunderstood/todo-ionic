@@ -13,6 +13,8 @@ import { UserData } from 'src/app/shared/models/auth.model';
 export class SettingsPage implements OnInit {
 
   currentUser: UserData;
+  editClicked = false;
+  editUsernameText: string;
 
   constructor(
     private router: Router,
@@ -40,6 +42,15 @@ export class SettingsPage implements OnInit {
   }
 
   editUsername() {
-    console.log('Username');
+    this.editClicked = true;
+  }
+
+  async markComplete() {
+    await this.firebaseAuthService.getCurrentUser().updateProfile({displayName: this.editUsernameText});
+    await this.utilService.presentLoading();
+    this.currentUser.displayName = this.firebaseAuthService.getCurrentUser().displayName;
+    this.editUsernameText = '';
+    await this.utilService.dismissLoading();
+    this.editClicked = false;
   }
 }

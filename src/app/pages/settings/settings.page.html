@@ -12,13 +12,18 @@
           <ngx-avatar [name]="currentUser.displayName" size="40" round="true"></ngx-avatar>
         </ion-col>
         <ion-col size="9">
-          <ion-row class="ion-text-nowrap">Username: {{ currentUser.displayName }}</ion-row>
+            <ion-row class="ion-text-wrap" *ngIf="!editClicked; else canEdit">Username: {{ currentUser.displayName }}</ion-row>
+            <ng-template #canEdit>
+              <ion-input type="text" [(ngModel)]="editUsernameText" placeholder="ChaneUsername"></ion-input>
+            </ng-template>
+
+            <ion-button *ngIf="!editClicked; else completeEdit" (click)="editUsername()">Edit</ion-button>
+            <ng-template #completeEdit>
+              <ion-button (click)="markComplete()" color="success">Done</ion-button>
+            </ng-template>
           <ion-row class="ion-text-nowrap">Email: {{ currentUser.email }}</ion-row>
         </ion-col>
       </ion-row>
-    </ion-item>
-    <ion-item button (click)="editUsername()">
-      <ion-label>Edit username</ion-label>
     </ion-item>
     <ion-item button (click)="todoService.deleteUserAccount()">
       <ion-label color="danger">Delete account permanently</ion-label>
