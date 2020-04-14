@@ -14,7 +14,7 @@
         <ion-col size="9">
             <ion-row class="ion-text-wrap" *ngIf="!editClicked; else canEdit">Username: {{ currentUser.displayName }}</ion-row>
             <ng-template #canEdit>
-              <ion-input type="text" [(ngModel)]="editUsernameText" placeholder="ChaneUsername"></ion-input>
+              <ion-input type="text" [(ngModel)]="editUsernameText" placeholder="Change Username"></ion-input>
             </ng-template>
 
             <ion-button *ngIf="!editClicked; else completeEdit" (click)="editUsername()">Edit</ion-button>
